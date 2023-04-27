@@ -1,0 +1,26 @@
+{
+  "name": "ts-node-mongo-rest-api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SCholakov05/TS-Node-Mongo-REST-API.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SCholakov05/TS-Node-Mongo-REST-API/issues"
+  },
+  "homepage": "https://github.com/SCholakov05/TS-Node-Mongo-REST-API#readme",
+  "devDependencies": {
+    "dotenv": "^16.0.3",
+    "nodemon": "^2.0.22",
+    "ts-node": "^10.9.1",
+    "typescript": "^5.0.4"
+  }
+}
