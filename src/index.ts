@@ -6,6 +6,7 @@ import compression from 'compression';
 import cors from 'cors';
 import dotenv from 'dotenv';
 import mongoose from 'mongoose';
+import router from './router';
 
 dotenv.config();
 
@@ -31,3 +32,5 @@ const MONGO_URI=`mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSW
 mongoose.Promise = Promise;
 mongoose.connect(MONGO_URI);
 mongoose.connection.on('error', (error: Error) => console.log(error));
+
+app.use('/', router());
