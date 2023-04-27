@@ -20,7 +20,6 @@ app.use(cookieParser());
 app.use(bodyParser.json());
 
 const PORT = process.env.PORT || 8080;
-console.log(process.env.PORT);
 
 const server = http.createServer(app);
 
@@ -28,7 +27,6 @@ server.listen(PORT, () => {
     console.log(`Server listening on http://localhost:${PORT}`);
 });
 const MONGO_URI=`mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@cluster0.hxasbbq.mongodb.net/?retryWrites=true&w=majority`
-console.log(MONGO_URI);
 
 mongoose.Promise = Promise;
 mongoose.connect(MONGO_URI);
