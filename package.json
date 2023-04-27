@@ -18,7 +18,7 @@
     "url": "https://github.com/SCholakov05/TS-Node-Mongo-REST-API/issues"
   },
   "homepage": "https://github.com/SCholakov05/TS-Node-Mongo-REST-API#readme",
-  "devDependencies": {
+  "dependencies": {
     "@types/body-parser": "^1.19.2",
     "@types/compression": "^1.7.2",
     "@types/cookie-parser": "^1.4.3",
@@ -27,13 +27,13 @@
     "dotenv": "^16.0.3",
     "nodemon": "^2.0.22",
     "ts-node": "^10.9.1",
-    "typescript": "^5.0.4"
-  },
-  "dependencies": {
+    "typescript": "^5.0.4",
+    "@types/mongoose": "^5.11.97",
     "body-parser": "^1.20.2",
     "compression": "^1.7.4",
     "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",
-    "express": "^4.18.2"
+    "express": "^4.18.2",
+    "mongoose": "^7.0.5"
   }
 }
