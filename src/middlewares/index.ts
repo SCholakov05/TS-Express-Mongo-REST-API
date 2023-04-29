@@ -1,36 +1,47 @@
-import express from "express";
-import { get, merge } from "lodash";
-import dotenv from 'dotenv';
+import express from 'express';
+import { merge, get } from 'lodash';
 
-dotenv.config();
+import { getUserBySessionToken } from '../models/users'; 
 
-import { getUserBySessionToken } from "../models/users";
-
-export const isAuthenticated = async (
-  req: express.Request,
-  res: express.Response,
-  next: express.NextFunction
-) => {
+export const isAuthenticated = async (req: express.Request, res: express.Response, next: express.NextFunction) => {
   try {
+    const sessionToken = req.cookies['ANTONIO-AUTH'];
 
-    const sessionToken = req.cookies[process.env.COOKIE_NAME];
+    if (!sessionToken) {
+      return res.sendStatus(403);
+    }
 
-    if(!sessionToken) {
-        return res.status(403).json('Session token does not exists!');
-    };
+    const existingUser = await getUserBySessionToken(sessionToken);
 
-    const existingUser = getUserBySessionToken(sessionToken);
+    if (!existingUser) {
+      return res.sendStatus(403);
+    }
 
-    if(!existingUser) {
-        return res.status(403).json('User does not exists!');
-    };
-
-    merge(req, {identify: existingUser});
+    merge(req, { identity: existingUser });
 
     return next();
-
-  } catch (err) {
-    console.log(err);
+  } catch (error) {
+    console.log(error);
     return res.sendStatus(400);
   }
-};
+}
+
+export const isOwner = async (req: express.Request, res: express.Response, next: express.NextFunction) => {
+  try {
+    const { id } = req.params;
+    const currentUserId = get(req, 'identity._id') as string;
+
+    if (!currentUserId) {
+      return res.sendStatus(400);
+    }
+
+    if (currentUserId.toString() !== id) {
+      return res.sendStatus(403);
+    }
+
+    next();
+  } catch (error) {
+    console.log(error);
+    return res.sendStatus(400);
+  }
+}
